@@ -12,6 +12,13 @@ func GetUsers(c *gin.Context) {
 	c.JSON(200, &users)
 }
 
+func GetUser(c *gin.Context) {
+	var user model.User
+	config.DB.Where("id = ?", c.Param("id")).First(&user)
+	c.JSON(200, &user)
+
+}
+
 func CreateUser(c *gin.Context) {
 	var user model.User
 	c.BindJSON(&user)
